@@ -6,14 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%-- 显式生命这是一个错误页面--%>
-<%@page isErrorPage="true" %>
+<%-- 显式声明这是一个错误页面--%>
+<%--<%@page isErrorPage="true" %>--%>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
 <h1>这是500错误的页面</h1>
-<img src="../error/error_500.jsp" alt="500">
+<img src="${pageContext.request.contextPath}/statics/img/error_500.png" alt="500">
 </body>
 </html>

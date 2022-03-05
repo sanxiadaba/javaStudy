@@ -22,10 +22,11 @@ public class CharacterEncoding implements Filter {
         servletRequest.setCharacterEncoding("utf-8");
         servletResponse.setContentType("text/html");
         servletResponse.setContentType("text/html; charset=utf-8");
-        System.out.println("过滤器执行前");
+        // 每一次访问符合要求的页面都会处罚请求
+//        System.out.println("过滤器执行前");
         // 让我们的请求继续走,不然到这就停止了
-        filterChain.doFilter(servletRequest,servletResponse);
-        System.out.println("过滤器执行后");
+        filterChain.doFilter(servletRequest, servletResponse);
+//        System.out.println("过滤器执行后");
     }
 
     // 销毁

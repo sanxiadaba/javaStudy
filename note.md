@@ -65,8 +65,17 @@ resp.setCharacterEncoding("utf-8");
 ```
 
 #### Lombok
+
 ```java
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 ```
+
+#### 连接jdbc设置
+
+```java
+"jdbc:mysql://localhost:3306/jdbc?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSl=true"
+```
+
+

@@ -9,11 +9,16 @@
         <outputRelativeToContentRoot value="true" />
         <module name="javaSkills" />
         <module name="javaWeb_01" />
-        <module name="javaStudy" />
+        <module name="javaStudy (1)" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="skill" target="8" />
-    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf-8" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="javaSkills" options="" />
+      <module name="javaStudy (1)" options="" />
+      <module name="javaWeb_01" options="" />
+    </option>
   </component>
 </project>

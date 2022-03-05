@@ -20,7 +20,14 @@
 
     <dependencies>
 
-<!--        导入servlet最基本的包-->
+        <!--        导入单元测试的包-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+        </dependency>
+
+        <!--        导入servlet最基本的包-->
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -29,7 +36,7 @@
             <scope>provided</scope>
         </dependency>
 
-<!--        导入使用jsp所需要的jar包-->
+        <!--        导入使用jsp所需要的jar包-->
         <!-- https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api -->
         <dependency>
             <groupId>javax.servlet.jsp</groupId>

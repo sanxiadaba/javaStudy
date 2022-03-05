@@ -13,6 +13,7 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>这是404错误页面</h1>
+<img src="${pageContext.request.contextPath}/statics/img/error_404.png" alt="404">
 </body>
 </html>
