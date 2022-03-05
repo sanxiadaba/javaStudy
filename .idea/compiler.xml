@@ -8,10 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="javaSkills" />
-        <module name="javaWeb_01" />
         <module name="javaStudy (1)" />
+        <module name="javaWeb_01" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="smbms" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf-8" />
@@ -19,6 +22,7 @@
       <module name="javaSkills" options="" />
       <module name="javaStudy (1)" options="" />
       <module name="javaWeb_01" options="" />
+      <module name="smbms" options="" />
     </option>
   </component>
 </project>

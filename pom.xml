@@ -11,6 +11,7 @@
     <modules>
         <module>javaSkills</module>
         <module>javaStudy</module>
+        <module>smbms</module>
     </modules>
 
     <properties>
