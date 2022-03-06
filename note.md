@@ -75,7 +75,13 @@ resp.setCharacterEncoding("utf-8");
 #### 连接jdbc设置
 
 ```java
-"jdbc:mysql://localhost:3306/jdbc?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSl=true"
+"jdbc:mysql://localhost:3306/jdbc?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSl=true&serverTimezone=GMT%2B8"
 ```
 
+#### 设置java虚拟机编码格式
 
+```java
+-Dfile.encoding=UTF-8
+```
+
+#### 测试

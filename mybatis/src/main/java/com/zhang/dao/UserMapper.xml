@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 绑定一个对应的dao接口-->
+
+<mapper namespace="com.zhang.dao.UserMapper">
+
+    <!-- 查询全部-->
+    <select id="getUserList" resultType="com.zhang.pojo.User">
+        select *
+        from users
+    </select>
+
+    <!--    根据参数查询-->
+    <select id="getUserById" parameterType="int" resultType="com.zhang.pojo.User">
+        select *
+        from users
+        where id = #{id}
+    </select>
+
+    <!--    插入一个用户-->
+    <insert id="addUser" parameterType="com.zhang.pojo.User">
+        insert into users (id, name, password, email, birthday)
+        VALUES (#{id}, #{name}, #{password}, #{email}, #{birthday})
+    </insert>
+
+    <!--    更新用户-->
+    <update id="updateUser" parameterType="com.zhang.pojo.User">
+        update users
+        set name=#{name},
+            password=#{password},
+            email=#{email},
+            birthday=#{birthday}
+        where id = #{id}
+    </update>
+
+    <!--    删除用户-->
+    <delete id="delUserById" parameterType="int">
+        delete
+        from users
+        where id = #{id}
+    </delete>
+
+    <!--    万能的map-->
+    <insert id="useMap" parameterType="map">
+        insert into users (id, name, password, email, birthday)
+        values (#{userId}, #{name}, #{passWord}, #{email}, #{birthday})
+    </insert>
+
+    <!--    模糊查询-->
+    <select id="getUserByName" parameterType="string" resultType="com.zhang.pojo.User">
+        select *
+        from users
+        where name like #{name}
+    </select>
+
+</mapper>

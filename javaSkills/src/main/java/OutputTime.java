@@ -7,6 +7,8 @@ public class OutputTime {
         long currentTimeMillis = System.currentTimeMillis();
         Date date = new Date(currentTimeMillis);
         System.out.println(date.toLocaleString());
+        // 或者
+        System.out.println(new java.sql.Date(new java.util.Date().getTime()));
 
     }
 }

@@ -10,6 +10,7 @@
         <module name="javaSkills" />
         <module name="javaStudy (1)" />
         <module name="javaWeb_01" />
+        <module name="mybatis" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,6 +23,7 @@
       <module name="javaSkills" options="" />
       <module name="javaStudy (1)" options="" />
       <module name="javaWeb_01" options="" />
+      <module name="mybatis" options="" />
       <module name="smbms" options="" />
     </option>
   </component>
