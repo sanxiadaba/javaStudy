@@ -5,30 +5,35 @@
 
 <!-- 绑定一个对应的dao接口-->
 
+
 <mapper namespace="com.zhang.dao.UserMapper">
+
+    <resultMap id="UserMap" type="com.zhang.pojo.User">
+        <result column="password" property="pwd"/>
+    </resultMap>
 
     <!-- 查询全部-->
     <select id="getUserList" resultType="com.zhang.pojo.User">
         select *
-        from users
+        from user
     </select>
 
     <!--    根据参数查询-->
     <select id="getUserById" parameterType="int" resultType="com.zhang.pojo.User">
         select *
-        from users
+        from user
         where id = #{id}
     </select>
 
     <!--    插入一个用户-->
     <insert id="addUser" parameterType="com.zhang.pojo.User">
-        insert into users (id, name, password, email, birthday)
+        insert into user (id, name, password, email, birthday)
         VALUES (#{id}, #{name}, #{password}, #{email}, #{birthday})
     </insert>
 
     <!--    更新用户-->
     <update id="updateUser" parameterType="com.zhang.pojo.User">
-        update users
+        update user
         set name=#{name},
             password=#{password},
             email=#{email},
@@ -39,21 +44,28 @@
     <!--    删除用户-->
     <delete id="delUserById" parameterType="int">
         delete
-        from users
+        from user
         where id = #{id}
     </delete>
 
     <!--    万能的map-->
     <insert id="useMap" parameterType="map">
-        insert into users (id, name, password, email, birthday)
+        insert into user (id, name, password, email, birthday)
         values (#{userId}, #{name}, #{passWord}, #{email}, #{birthday})
     </insert>
 
     <!--    模糊查询-->
     <select id="getUserByName" parameterType="string" resultType="com.zhang.pojo.User">
         select *
-        from users
+        from user
         where name like #{name}
     </select>
 
+    <!--    实现分页-->
+    <select id="getUserByPage" resultMap="UserMap" parameterType="map">
+        select *
+        from user limit #{start}, #{size}
+    </select>
+
 </mapper>
+

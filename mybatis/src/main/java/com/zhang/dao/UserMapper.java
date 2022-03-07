@@ -26,4 +26,9 @@ public interface UserMapper {
 
     // 模糊查询
     List<User> getUserByName(String name);
+
+    // 实现分页功能
+    List<User> getUserByPage(Map<String, Integer> map);
+
+
 }

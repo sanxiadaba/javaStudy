@@ -2,11 +2,11 @@ package com.zhang.dao;
 
 import java.util.HashMap;
 
-public class TestCopilot {
+public class CopilotTest {
     public static void main(String[] args) {
         // 测试copilot
         int[] list = new int[]{3, 2, 34, 5, 6, 7, 8, 9, 10};
-        TestCopilot test = new TestCopilot();
+        CopilotTest test = new CopilotTest();
         test.print(list);
         test.multiply(list);
         test.sum(list);
