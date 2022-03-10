@@ -17,6 +17,9 @@
         <!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
         <!--        实现LOG4J-->
         <setting name="logImpl" value="LOG4J"/>
+        <!--        开启驼峰明明与经典数据库名称之间的转换-->
+        <!--                       mapUnderscoreToCamelCase-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
     <environments default="development">
@@ -36,5 +39,8 @@
         <!--        绑定配置文件-->
         <!--        注意这里不能使用通配符-->
         <mapper resource="com/zhang/dao/UserMapper.xml"/>
+        <mapper resource="com/zhang/dao/StudentMapper.xml"/>
+        <mapper resource="com/zhang/dao/TeacherMapper.xml"/>
+        <mapper resource="com/zhang/dao/BlogMapper.xml"/>
     </mappers>
 </configuration>

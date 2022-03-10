@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhang.dao.BlogMapper">
+    <!--    sql片段,抽取出公共的部分-->
+    <sql id="publicSql">
+        <if test="title != null">
+            title=#{title}
+        </if>
+        <if test="author != null">
+            author=#{author}
+        </if>
+    </sql>
+
+
+    <insert id="addBlog" parameterType="com.zhang.pojo.Blog">
+        -- 注意这里#号后面的创建时间要写 createTime因为它会自动调用类里的het方法
+        insert into blog (id, title, author, create_time, views)
+        values (#{id}, #{title}, #{author}, #{createTime}, #{views});
+    </insert>
+    <select id="queryBlogIF" parameterType="map" resultType="com.zhang.pojo.Blog">
+        -- 这样的话能查询出所有的博客
+        select * from blog where 1=1
+        -- 如果title不为空,就会把判断后的语句追加到后面
+        <if test="title != null">
+            and title=#{title}
+        </if>
+        <if test="author != null">
+            and author=#{author}
+        </if>
+    </select>
+
+    <!--    使用choose来查询-->
+    <select id="queryBlogChoose" parameterType="map" resultType="com.zhang.pojo.Blog">
+        select * from blog
+        -- 使用where标签以及choose来查询
+        <where>
+            <choose>
+                <when test="title!=null">
+                    title=#{title}
+                </when>
+                <when test="author!=null">
+                    author=#{author}
+                </when>
+                <otherwise>
+                    title="微服务"
+                </otherwise>
+            </choose>
+
+
+        </where>
+
+    </select>
+
+    <!--    使用set来更新博客 set会自动去除,-->
+    <update id="updateBlogSet" parameterType="map">
+        update blog
+        <set>
+            <include refid="publicSql"></include>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--    原生sql为
+    select * from blog where 1=1 and (title="Spring" or title="Java");
+    -->
+    <!--    使用for-each进行查询-->
+    <select id="queryBlogForeach" parameterType="map" resultType="com.zhang.pojo.Blog">
+        select * from blog
+        <where>
+            <foreach collection="titles" item="title" open="and (" close=")" separator="or">
+                title=#{title}
+            </foreach>
+        </where>
+    </select>
+</mapper>

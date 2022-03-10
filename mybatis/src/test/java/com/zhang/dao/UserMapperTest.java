@@ -22,6 +22,7 @@ public class UserMapperTest {
         // 获取sqlsession对象
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
         List<User> userList = userMapper.getUserList();
         for (User user : userList) {
             System.out.println(user.getName());

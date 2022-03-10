@@ -3,5 +3,52 @@
 
 <mapper namespace="com.zhang.dao.TeacherMapper">
 
+    <select id="getTeacher" resultType="com.zhang.pojo.Teacher02">
+        select *
+        from teacher
+    </select>
+
+    <!--    按照结果进行嵌套查询-->
+    <select id="getTeacherById" resultMap="teacherStudents">
+        SELECT s.id as sid, s.`name` as sname, t.id as tid, t.`name` as tname
+        FROM student as s,
+             teacher as t
+        WHERE s.tid = t.id
+          and t.id = #{id}
+    </select>
+
+    <resultMap id="teacherStudents" type="com.zhang.pojo.Teacher02">
+        <result property="id" column="tid"/>
+        <result property="name" column="tname"/>
+        <!--        集合的话需要collection了-->
+        <collection property="students" ofType="com.zhang.pojo.Student02">
+            <result property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <result property="tid" column="tid"/>
+        </collection>
+    </resultMap>
+
+
+    <!--    使用子查询-->
+    <select id="getTeacherById02" resultMap="teacherStudents02">
+        select *
+        from teacher
+        where id = #{id}
+    </select>
+
+    <resultMap id="teacherStudents02" type="com.zhang.pojo.Teacher02">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="students" javaType="ArrayList" ofType="com.zhang.pojo.Student02" select="getStudent"
+                    column="id">
+
+        </collection>
+    </resultMap>
+
+    <select id="getStudent" resultType="com.zhang.pojo.Student02">
+        select *
+        from student
+        where tid = #{id}
+    </select>
 
 </mapper>
