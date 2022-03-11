@@ -20,6 +20,8 @@
         <!--        开启驼峰明明与经典数据库名称之间的转换-->
         <!--                       mapUnderscoreToCamelCase-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--        缓存,默认开启,这里是显式声明,让别人知道你开启了全局缓存-->
+        <setting name="cacheEnabled" value="true"/>
     </settings>
 
     <environments default="development">

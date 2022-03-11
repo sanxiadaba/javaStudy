@@ -23,6 +23,8 @@ public class MybatisUtils {
 
     public static SqlSession getSqlSession() {
         return sqlSessionFactory.openSession();
+//        这里设置为true的话,就无需commit,自动会提交
+//        return sqlSessionFactory.openSession(true);
     }
 
 }

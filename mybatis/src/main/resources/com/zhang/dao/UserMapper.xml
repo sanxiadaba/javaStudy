@@ -7,6 +7,13 @@
 
 
 <mapper namespace="com.zhang.dao.UserMapper">
+    <!--    在当前mapper中使用二级缓存-->
+    <!--    1.缓存方式,第一次读入和第一次读出 2.自动刷新时间60秒 3.缓存池最多缓存数据大小512 4,只读-->
+    <cache
+            eviction="FIFO"
+            flushInterval="60000"
+            size="512"
+            readOnly="true"/>
 
     <resultMap id="UserMap" type="com.zhang.pojo.User">
         <result column="password" property="pwd"/>

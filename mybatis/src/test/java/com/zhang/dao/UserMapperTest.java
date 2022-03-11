@@ -143,6 +143,53 @@ public class UserMapperTest {
         sqlSession.close();
     }
 
+    // 测试缓存 默认开启,只在一次sqlsession中有效,只能清理,无法关闭
+    @Test
+    public void cacheTest() {
+        /**
+         * 映射语句文件中的所有 select 语句的结果将会被缓存。
+         * 映射语句文件中的所有 insert、update 和 delete 语句会刷新缓存。
+         * 缓存会使用最近最少使用算法（LRU, Least Recently Used）算法来清除不需要的缓存。
+         * 缓存不会定时进行刷新（也就是说，没有刷新间隔）。
+         * 缓存会保存列表或对象（无论查询方法返回哪种）的 1024 个引用。
+         * 缓存会被视为读/写缓存，这意味着获取到的对象并不是共享的，可以安全地被调用者修改，而不干扰其他调用者或线程所做的潜在修改。
+         *
+         */
+
+        // 获取sqlsession对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user1 = userMapper.getUserById(1);
+//        手动清理缓存
+//        sqlSession.clearCache();
+        System.out.println("=============");
+        User user2 = userMapper.getUserById(1);
+        // 结果是 true 在Mybaties里默认开启了一级缓存 而且明显看出sql只执行了一次查询
+        System.out.println(user1 == user2);
+
+        sqlSession.close();
+    }
+
+    // 测试二级缓存
+    @Test
+    public void cacheTwoTest() {
+        // 获取第一个sqlsession对象
+        SqlSession sqlSession1 = MybatisUtils.getSqlSession();
+        UserMapper userMapper1 = sqlSession1.getMapper(UserMapper.class);
+        // 获取第二个sqlsession对象
+        SqlSession sqlSession2 = MybatisUtils.getSqlSession();
+        UserMapper userMapper2 = sqlSession2.getMapper(UserMapper.class);
+
+        // 注意,第一个session关闭后才会进入二级缓存
+        User user1 = userMapper1.getUserById(1);
+        sqlSession1.close();
+        User user2 = userMapper2.getUserById(1);
+        sqlSession2.close();
+        System.out.println("=========");
+        // 这里的结果是 true
+        System.out.println(user1 == user2);
+    }
+
 
 }
 
