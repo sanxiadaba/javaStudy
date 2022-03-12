@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--    导入其它的配置文件-->
+    <import resource="userBeab.xml"/>
+
+    <!--    别名,起了别名之后,原来的名字也可以访问-->
+    <alias name="hello" alias="hello2"/>
+
+    <!--    使用spring来创建对象,在spring中,这些都称为bean,注意这里的name也是别名,而且可以取多个别名,可以用,和;进行分割-->
+    <bean id="hello" class="com.zhang.pojo.Hello" name="hello3,hello4;hello5">
+        <!--  无参  通过set注入-->
+        <!--    <property name="str" value="Spring"/>-->
+        <!--    有参构造 通过索引构造-->
+        <!--    <constructor-arg index="0" value="hello"/>-->
+        <!--    通过参数名构造-->
+        <constructor-arg name="str" value="hello"/>
+    </bean>
+    <bean id="student" class="com.zhang.pojo.Student">
+        <!--    第一种,普通值注入-->
+        <property name="name" value="名字"/>
+        <!--    第二种,bean引用注入-->
+        <property name="address" ref="address"/>
+        <!--    第三种,数组注入-->
+        <property name="books">
+            <array>
+                <value>红楼梦</value>
+                <value>三国演义</value>
+                <value>水浒传</value>
+                <value>西游记</value>
+            </array>
+        </property>
+        <!--    第四种,list注入-->
+        <property name="hobbies">
+            <list>
+                <value>听歌</value>
+                <value>吃饭</value>
+                <value>敲代码</value>
+            </list>
+        </property>
+        <!--    第五种,map注入-->
+        <property name="card">
+            <map>
+                <entry key="身份证" value="1234"/>
+                <entry key="银行卡" value="63463"/>
+            </map>
+        </property>
+        <!--    第六种,set注入-->
+        <property name="games">
+            <set>
+                <value>qq飞车</value>
+                <value>英雄联盟</value>
+            </set>
+        </property>
+        <!--    第七种,空字符串或空注入-->
+        <!--    这是空字符串注入-->
+        <!--    <property name="wife" value=""/>-->
+        <property name="wife">
+            <null/>
+        </property>
+
+        <!--    第八种,配置注入-->
+        <property name="info">
+            <props>
+                <prop key="学号">312313</prop>
+                <prop key="姓名">小明</prop>
+                <prop key="性别">男</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <bean id="address" class="com.zhang.pojo.Address">
+        <property name="address" value="我是地址"/>
+    </bean>
+
+
+</beans>

@@ -12,6 +12,7 @@
         <module>javaSkills</module>
         <module>javaStudy</module>
         <module>mybatis</module>
+        <module>helloSpring</module>
     </modules>
 
     <properties>
@@ -95,7 +96,21 @@
             <version>1.2.17</version>
         </dependency>
 
+        <!--导入spring(maven会导入相关的其它好多包)-->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.3.16</version>
+        </dependency>
 
+        <!--        spring与数据库的整合-->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.3.16</version>
+        </dependency>
     </dependencies>
 
 </project>
