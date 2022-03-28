@@ -11,6 +11,8 @@ public class HelloTest {
 //      现在对象交由spring管理,获取的话直接从里面取即可
         Hello hello = (Hello) context.getBean("hello2");
         Hello hello1 = (Hello) context.getBean("hello");
+        System.out.println(hello==hello1);
+//        true
         System.out.println(hello.toString());
         System.out.println(hello.getStr());
         System.out.println(hello1.toString());

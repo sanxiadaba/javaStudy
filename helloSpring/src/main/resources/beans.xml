@@ -11,7 +11,8 @@
     <alias name="hello" alias="hello2"/>
 
     <!--    使用spring来创建对象,在spring中,这些都称为bean,注意这里的name也是别名,而且可以取多个别名,可以用,和;进行分割-->
-    <bean id="hello" class="com.zhang.pojo.Hello" name="hello3,hello4;hello5">
+<!--    scope默认是单例模式,即创建出的多个都相等,设置为prototype就会为false-->
+    <bean id="hello" class="com.zhang.pojo.Hello" name="hello3,hello4;hello5" scope="prototype">
         <!--  无参  通过set注入-->
         <!--    <property name="str" value="Spring"/>-->
         <!--    有参构造 通过索引构造-->
