@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <!--&lt;!&ndash;注册狗&ndash;&gt;-->
+    <!--    <bean id="dog" class="com.zhang.pojo.Dog"/>-->
+    <!--&lt;!&ndash;注册猫&ndash;&gt;-->
+    <!--    <bean id="cat" class="com.zhang.pojo.Cat"/>-->
+    <!--&lt;!&ndash;    注册人&ndash;&gt;-->
+    <!--&lt;!&ndash;    <bean id="person" class="com.zhang.pojo.Person">&ndash;&gt;-->
+    <!--&lt;!&ndash;        <property name="name" value="我是人"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;        <property name="cat" ref="cat"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;        <property name="dog" ref="dog"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;    </bean>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;    byName自动装配 注意这时候要与上面的name相等 byType的话会匹配对应的type byTppe时id甚至可以省略 &ndash;&gt;-->
+    <!--    <bean id="person" class="com.zhang.pojo.Person" autowire="byName">-->
+    <!--        <property name="name" value="我是人"/>-->
+    <!--    </bean>-->
+
+    <!--注册狗-->
+    <!--    <bean id="dog" class="com.zhang.pojo.Dog"/>-->
+    <bean id="dog22" class="com.zhang.pojo.Dog"/>
+    <!--注册猫-->
+    <bean id="cat" class="com.zhang.pojo.Cat"/>
+    <!--    注册人-->
+    <bean id="person" class="com.zhang.pojo.Person">
+        <property name="name" value="我是姓名"/>
+    </bean>
+</beans>

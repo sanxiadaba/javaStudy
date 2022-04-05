@@ -1,17 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--
+    context  导入db文件
+    p c  命名空间
+    tx 声明式事务管理
+    aop 切入
+
+
+    -->
+
+    <!--    导入配置文件-->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <!--    配置mybatis数据库-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--    配置sqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--        绑定mybatis配置文件-->
+        <property name="configLocation" value="classpath:mybatisConfig.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <!--    注入sqlSession-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <!--    只能用构造器注入-->
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+    <!--    配置声明式事务-->
+    <bean id="transactionManage" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+    <!--    结合aop的织入-->
+    <!--    配置事务的通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManage">
+        <tx:attributes>
+            <tx:method name="add"/>
+            <tx:method name="update"/>
+            <tx:method name="delete"/>
+            <!--        不能对数据库进行操作-->
+            <tx:method name="query" read-only="true"/>
+            <!--        给所有方法配置-->
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--    配置事务切入-->
+    <aop:config>
+        <aop:pointcut id="txPointCut" expression="execution(* com.zhang.dao.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+    </aop:config>
+
+
+    <!--    注入blogMapper-->
+    <bean id="blogMapper" class="com.zhang.service.BlogMapperImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+    <bean id="blogMapper_02" class="com.zhang.service.BlogMapperImpl_02">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
 
     <!--    导入其它的配置文件-->
-    <import resource="userBeab.xml"/>
-
+    <import resource="user.xml"/>
+    <import resource="person.xml"/>
     <!--    别名,起了别名之后,原来的名字也可以访问-->
     <alias name="hello" alias="hello2"/>
 
     <!--    使用spring来创建对象,在spring中,这些都称为bean,注意这里的name也是别名,而且可以取多个别名,可以用,和;进行分割-->
-<!--    scope默认是单例模式,即创建出的多个都相等,设置为prototype就会为false-->
+    <!--    scope默认是单例模式,即创建出的多个都相等,设置为prototype就会为false-->
     <bean id="hello" class="com.zhang.pojo.Hello" name="hello3,hello4;hello5" scope="prototype">
         <!--  无参  通过set注入-->
         <!--    <property name="str" value="Spring"/>-->
@@ -78,5 +157,31 @@
         <property name="address" value="我是地址"/>
     </bean>
 
+    <!--    测试aop 前置和后置日志-->
+    <bean id="userService" class="study.UserServiceImpl"/>
+    <bean id="beforeLog" class="log.LogBefore"/>
+    <bean id="afterLog" class="log.LogAfter"/>
+    <!--配置aop-->
+    <aop:config>
+        <aop:pointcut id="pct" expression="execution(* study.UserServiceImpl.*(..))"/>
+        <!--        执行环绕增加-->
+        <aop:advisor advice-ref="beforeLog" pointcut-ref="pct"/>
+        <aop:advisor advice-ref="afterLog" pointcut-ref="pct"/>
 
+    </aop:config>
+
+    <!--    第二种方法aop-->
+    <bean id="diyAop" class="diy.DiyPointCut"/>
+    <aop:config>
+        <!--        自定义切面-->
+        <aop:aspect ref="diyAop">
+            <aop:pointcut id="pct1" expression="execution(* study.UserServiceImpl.*(..))"/>
+            <aop:before method="before" pointcut-ref="pct1"/>
+            <aop:after method="after" pointcut-ref="pct1"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!--    方式三 使用注解-->
+    <bean id="annotationPointCut" class="diy.AnnotationPointCut"/>
+    <aop:aspectj-autoproxy/>
 </beans>

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class BlogTest {
     // 初始化定义log4j
-    static Logger logger = Logger.getLogger(UserMapperTest.class);
+    static Logger logger = Logger.getLogger(BlogTest.class);
 
     // 测试log4j
     @Test
