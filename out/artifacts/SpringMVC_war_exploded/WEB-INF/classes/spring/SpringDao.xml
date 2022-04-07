@@ -69,12 +69,8 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
     </aop:config>
 
-
     <!--    注入到spring-->
-
     <bean id="userTestMapper" class="com.sanxiadaba.service.UserTestImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
-
-
 </beans>

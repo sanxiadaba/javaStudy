@@ -13,24 +13,6 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!--    管理总的spring配置-->
-
-    <!--
-    context  导入db文件
-    p c  命名空间
-    tx 声明式事务管理
-    aop 切入
-    -->
-
-    <!--    导入-->
-    <!--导入设置数据库-->
-    <import resource="spring/SpringDao.xml"/>
-    <!--导入操作aop-->
-    <import resource="spring/SpringAop.xml"/>
-    <!--导SpringMVC的配置-->
-    <import resource="spring/SpringMVC.xml"/>
-    <!--导SpringBean的配置-->
-    <import resource="spring/springBean.xml"/>
-
+    <!--专门用来注册一般的bean-->
 
 </beans>

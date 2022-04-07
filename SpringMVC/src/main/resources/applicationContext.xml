@@ -29,6 +29,10 @@
     <import resource="spring/SpringAop.xml"/>
     <!--导SpringMVC的配置-->
     <import resource="spring/SpringMVC.xml"/>
+    <!--导SpringBean的配置-->
+    <import resource="spring/springBean.xml"/>
+    <!--导SpringService的配置-->
+    <import resource="spring/SpringService.xml"/>
 
 
 </beans>

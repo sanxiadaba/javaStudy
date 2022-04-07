@@ -14,7 +14,7 @@ public class RedirectAndForward {
     public String testForward(Model model){
         model.addAttribute("msg","这是转发请求");
         // 在已经配置前后缀的情况下,此时不用在前面声明forward 否则反而会报错
-        return "test";
+        return "testMsg";
     }
 
 

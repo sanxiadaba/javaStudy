@@ -11,7 +11,6 @@ public class HelloControler{
         String msg= "hello Spring";
         // 封装数据
         model.addAttribute("msg",msg);
-        return "test";
+        return "testMsg";
     }
-
 }

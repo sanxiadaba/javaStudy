@@ -23,4 +23,30 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!--    配置mvc的乱码设置(这里使用的包是自己写的)-->
+    <filter>
+        <filter-name>encoding</filter-name>
+        <filter-class>com.sanxiadaba.filter.GenericEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>encoding</filter-name>
+        <!--注意这里是/*-->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--或者可以-->
+    <!--    <filter>-->
+    <!--        <filter-name>characterFilter</filter-name>-->
+    <!--        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
+    <!--        <init-param>-->
+    <!--            <param-name>encoding</param-name>-->
+    <!--            <param-value>UTF-8</param-value>-->
+    <!--        </init-param>-->
+    <!--    </filter>-->
+    <!--    <filter-mapping>-->
+    <!--        <filter-name>characterFilter</filter-name>-->
+    <!--        &lt;!&ndash;对所有URL进行拦截&ndash;&gt;-->
+    <!--        <url-pattern>/*</url-pattern>-->
+    <!--    </filter-mapping>-->
+
 </web-app>

@@ -12,6 +12,6 @@ public class RestfulControler {
     public String testAdd(@PathVariable int a,@PathVariable int b, Model model){
         int res=a+b;
         model.addAttribute("msg","结果为: "+res);
-        return "test";
+        return "testMsg";
     }
 }
