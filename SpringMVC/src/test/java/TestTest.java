@@ -1,5 +1,6 @@
 import com.sanxiadaba.dao.UserTestMapper;
 import com.sanxiadaba.pojo.UserTest;
+import com.sanxiadaba.service.UserTestImpl;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -21,8 +22,16 @@ public class TestTest {
 
 
     @Test
-    public void selectAll() {
+    public void selectAll_01() {
         UserTestMapper userTestMapper = context.getBean("userTestMapper", UserTestMapper.class);
+        for (UserTest userTest : userTestMapper.selectAll()) {
+            System.out.println(userTest);
+        }
+    }
+
+    @Test
+    public void selectAll_02() {
+        UserTestMapper userTestMapper = context.getBean("userTestImpl", UserTestImpl.class);
         for (UserTest userTest : userTestMapper.selectAll()) {
             System.out.println(userTest);
         }

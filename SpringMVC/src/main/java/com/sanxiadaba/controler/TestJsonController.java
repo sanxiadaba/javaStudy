@@ -13,7 +13,7 @@ import java.util.Date;
 
 // 这个注解表示下面的方法只会返回字符串
 @RestController
-public class UserControler {
+public class TestJsonController {
 
     //    返回一个字符串
     @RequestMapping("/testJson")

@@ -23,7 +23,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--    配置mvc的乱码设置(这里使用的包是自己写的)-->
+<!--    配置mvc的乱码设置(这里使用的包是自己写的)-->
     <filter>
         <filter-name>encoding</filter-name>
         <filter-class>com.sanxiadaba.filter.GenericEncodingFilter</filter-class>
@@ -49,4 +49,8 @@
     <!--        <url-pattern>/*</url-pattern>-->
     <!--    </filter-mapping>-->
 
+    <!--    设置session的时间-->
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
 </web-app>

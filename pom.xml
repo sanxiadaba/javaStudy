@@ -55,8 +55,14 @@
             <version>2.3.3</version>
             <scope>provided</scope>
         </dependency>
+        <!--导入jstl用的-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
 
-<!--        导入lombok-->
+        <!--        导入lombok-->
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -65,7 +71,7 @@
             <scope>provided</scope>
         </dependency>
 
-<!--        stardard标签库-->
+        <!--        stardard标签库-->
         <!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl-api -->
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
