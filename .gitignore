@@ -2,6 +2,7 @@
 .idea
 .vscode
 target
+/out
 
 # Compiled class file
 *.class
